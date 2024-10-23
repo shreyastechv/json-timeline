@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+.header {
+    height: 40px; 
+    text-align: center;
+}
+
 h1 {
     font-size: 14px;
 }
@@ -14,6 +19,19 @@ h2 {
 
 hr {
     margin-bottom: 58px;
+}
+
+.time-label {
+    font-size: 11px;
+    position: absolute;
+}
+
+#timeline-overlay {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    margin-top: 40px;
+    width: 100%;
 }
 
 #timeline-overlay > div {
