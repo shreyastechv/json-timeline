@@ -64,8 +64,6 @@ for (let i=0; i<data.length; i++) {
         pos = "right";
         divNew.style.position = "absolute";
     }
-    divNew.style.backgroundColor = "lightblue";
-    divNew.style.borderLeft = "2px solid #2196F3";
     divNew.style.top = obj.start + "px";
     divNew.style.height = obj.duration + "px";
     divNew.textContent = obj.title;

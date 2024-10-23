@@ -19,4 +19,7 @@ hr {
 #timeline-overlay > div {
     font-size: 12px;
     width: 100%;
+    position: absolute;
+    background-color: lightblue;
+    border-left: 2px solid #2196F3;
 }
