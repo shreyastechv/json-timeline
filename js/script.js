@@ -3,6 +3,10 @@ var data = [{
     duration: 15,
     title: "Exercise"
 }, {
+    start: 25,
+    duration: 30,
+    title: "Travel to work"
+}, {
     start: 30,
     duration: 30,
     title: "Plan day"
@@ -19,9 +23,17 @@ var data = [{
     duration: 90,
     title: "Have lunch with John"
 }, {
+    start: 360,
+    duration: 30,
+    title: "Skype call"
+}, {
     start: 370,
     duration: 45,
     title: "Follow up with designer"
+}, {
+    start: 400,
+    duration: 30,
+    title: "Push up branch"
 }
 ];
 
