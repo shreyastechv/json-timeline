@@ -41,18 +41,19 @@ const parentDiv = document.getElementById("timeline-overlay");
 
 let pos = "right";
 for (let i=0; i<data.length; i++) {
-    console.log(pos);
     const obj = data[i];
+    const objPrev = data[i-1];
+    const objNext = data[i+1];
     const divNew = document.createElement("div");
-    if ((i-1 >= 0 && (data[i-1].start + data[i-1].duration) > obj.start) || (i+1 < data.length && (obj.start + obj.duration) > data[i+1].start)) {
+    if ((i-1 >= 0 && (objPrev.start + objPrev.duration) > obj.start) || (i+1 < data.length && (obj.start + obj.duration) > objNext.start)) {
+        divNew.style.width = "50%";
         if (pos == "right") {
-            divNew.style.position = "relative";
+            divNew.style.left = "50%";
         }
         else {
-            divNew.style.position = "absolute";
+            divNew.style.right = "50%";
         }
-        divNew.style.width = "50%";
-        divNew.style.float = pos;
+
         if (pos == "left") {
             pos = "right";
         }
@@ -62,7 +63,6 @@ for (let i=0; i<data.length; i++) {
     }
     else {
         pos = "right";
-        divNew.style.position = "absolute";
     }
     divNew.style.top = obj.start + "px";
     divNew.style.height = obj.duration + "px";
