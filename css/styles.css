@@ -34,6 +34,14 @@ hr {
 .time-label {
     font-size: 11px;
     position: absolute;
+    color: rgb(155, 155, 155);
+    font-weight: 500;
+}
+
+.halftime-label {
+    font-size: 10px;
+    position: absolute;
+    top: 25px;
 }
 
 #timeline-overlay {
@@ -46,8 +54,8 @@ hr {
 
 #timeline-overlay > div {
     font-size: 9px;
-    width: 100%;
     position: absolute;
     background-color: #e1ecf4;
     border-left: 2px solid #2196F3;
+    padding-left: 5px;
 }
