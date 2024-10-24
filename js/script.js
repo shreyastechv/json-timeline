@@ -77,7 +77,6 @@ for (let i=0; i<data.length; i++) {
             divNew.style.marginLeft = (100/overlappingArr.length * j) + "%";
             divNew.style.width = 100/overlappingArr.length + "%";
         }
-        divNew.style.width = `calc(${divNew.style.width} - 7px)`;
         document.getElementById("timeline-overlay").appendChild(divNew);
     }
     overlappingArrBak = [...overlappingArr];
