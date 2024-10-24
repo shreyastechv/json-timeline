@@ -53,6 +53,10 @@ for (let i=0; i<data.length; i++) {
     } while (i < data.length && ((currFirstObj.start + currFirstObj.duration) > data[i].start));
     i--;
 
+    if (overlappingArr.length > 1 && Math.max(...overlappingArrBak) + 1 == Math.min(...overlappingArr)) {
+        width = width / 2;
+    }
+
     for (let j=0; j<overlappingArr.length; j++) {
         const divNew = document.createElement("div");
         const currObj = data[overlappingArr[j]];
@@ -61,9 +65,7 @@ for (let i=0; i<data.length; i++) {
         divNew.textContent = currObj.title;
         const bigArr = overlappingArrBak.filter((value) => data[value].start + data[value].duration > currObj.start);
         if (bigArr.length !== 0) {
-            if (j==0 && overlappingArr.length > 1 && Math.max(...overlappingArrBak) + 1 == Math.min(...overlappingArr)) {
-                width = width / 2;
-            }
+
             let prevBigDiv;
             for (let k=overlappingArrBak.length + j; k>0; k--) {
                 const prevDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${k})`);
