@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.header {
+    height: 40px; 
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+}
+
+h1 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 12px;
+    color: grey;
+    font-weight: 500;
+}
+
+hr {
+    margin-bottom: 58px;
+}
+
+.time-label {
+    font-size: 11px;
+    position: absolute;
+    color: rgb(155, 155, 155);
+    font-weight: 500;
+}
+
+.halftime-label {
+    font-size: 10px;
+    position: absolute;
+    top: 25px;
+}
+
+#timeline-overlay {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    margin-top: 56px;
+    width: 100%;
+}
+
+#timeline-overlay > div {
+    font-size: 9px;
+    position: absolute;
+    background-color: #e1ecf4;
+    border-left: 2px solid #2196F3;
+    padding-left: 5px;
+}
