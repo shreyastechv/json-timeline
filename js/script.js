@@ -44,15 +44,14 @@ let overlappingArrBak = [];
 for (let i=0; i<data.length; i++) {
 
     const overlappingArr = [];
-    let j = i;
+    let width = 100;
+    const currObj = data[i];
 
     do {
         overlappingArr.unshift(i);
         i++;
-    } while (i < data.length && ((data[j].start + data[j].duration) > data[i].start));
+    } while (i < data.length && ((currObj.start + currObj.duration) > data[i].start));
     i--;
-
-    let width = 100;
 
     for (let j=0; j<overlappingArr.length; j++) {
         const divNew = document.createElement("div");
@@ -65,22 +64,16 @@ for (let i=0; i<data.length; i++) {
             if (j ==0 && overlappingArr.length > 1 && Math.max(...overlappingArrBak) + 1 == Math.min(...overlappingArr)) {
                 width = width / 2;
             }
-            if (overlappingArrBak.indexOf(bigArr[0]) == 0) {
-                let prevBigDiv;
-                for (let k=overlappingArrBak.length + j; k>0; k--) {
-                    const prevDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${k})`);
-                    if (prevBigDiv === undefined || parseInt(prevDiv.style.top) + parseInt(prevDiv.style.height) > parseInt(prevBigDiv.style.top) + parseInt(prevBigDiv.style.height)) {
-                        prevBigDiv = prevDiv;
-                    }
+            let prevBigDiv;
+            for (let k=overlappingArrBak.length + j; k>0; k--) {
+                const prevDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${k})`);
+                if (prevBigDiv === undefined || parseInt(prevDiv.style.top) + parseInt(prevDiv.style.height) > parseInt(prevBigDiv.style.top) + parseInt(prevBigDiv.style.height)) {
+                    prevBigDiv = prevDiv;
                 }
-                divNew.style.marginLeft = (parseInt(prevBigDiv.style.width) + parseInt(prevBigDiv.style.marginLeft)) + "%";
-                divNew.style.width = (((overlappingArrBak.indexOf(bigArr.at(-1))+1) / overlappingArrBak.length) * width) + "%";
-                divNew.style.zIndex = 1;
             }
-            else {
-                divNew.style.width = ((overlappingArrBak.indexOf(bigArr.at(-1)) / overlappingArrBak.length) * width) + "%";
-                divNew.style.zIndex = 0;
-            }
+            divNew.style.marginLeft = (parseInt(prevBigDiv.style.width) + parseInt(prevBigDiv.style.marginLeft)) + "%";
+            divNew.style.width = (((overlappingArrBak.indexOf(bigArr.at(-1))+1) / overlappingArrBak.length) * width) + "%";
+            divNew.style.zIndex = 1;
         } else {
             divNew.style.width = 100/overlappingArr.length + "%";
             divNew.style.zIndex = 1;
