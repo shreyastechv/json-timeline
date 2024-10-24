@@ -45,9 +45,9 @@ for (let i=0; i<data.length; i++) {
     let j = i;
 
     do {
-        overlappingArr.push(i);
+        overlappingArr.unshift(i);
         i++;
-    } while (i < data.length && (data[j].start + data[j].duration) > data[i].start);
+    } while (i < data.length && (((data[j].start + data[j].duration) > data[i].start) || (( i>0 && (data[i-1]).start + data[i-1].duration) > data[i].start)));
     i--;
 
     for (let j=0; j<overlappingArr.length; j++) {
