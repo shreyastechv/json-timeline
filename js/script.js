@@ -64,11 +64,6 @@ for (let i=0; i<data.length; i++) {
             divNew.style.width = 100/overlappingArr.length + "%";
             divNew.style.zIndex = 1;
         }
-        for (let k=0; k<data.indexOf(data[overlappingArr[i]]); k++) {
-            if (data[k].start + data[k].duration > data[overlappingArr[i]].start) {
-                divNew.style.zIndex = 0;
-            }
-        }
         document.getElementById("timeline-overlay").appendChild(divNew);
     }
     overlappingArrBak = [...overlappingArr];
