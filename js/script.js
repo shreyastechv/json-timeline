@@ -40,14 +40,16 @@ var data = [{
 data.sort((a, b) => a.start - b.start);
 
 let overlappingArrBak = [];
+
 for (let i=0; i<data.length; i++) {
+
     const overlappingArr = [];
     let j = i;
 
     do {
         overlappingArr.unshift(i);
         i++;
-    } while (i < data.length && (((data[j].start + data[j].duration) > data[i].start) || (( i>0 && (data[i-1]).start + data[i-1].duration) > data[i].start)));
+    } while (i < data.length && ((data[j].start + data[j].duration) > data[i].start));
     i--;
 
     for (let j=0; j<overlappingArr.length; j++) {
@@ -58,8 +60,17 @@ for (let i=0; i<data.length; i++) {
         divNew.textContent = data[overlappingArr[j]].title;
         const bigArr = overlappingArrBak.filter((value) => data[value].start + data[value].duration > data[overlappingArr[j]].start);
         if (bigArr.length !== 0) {
-            divNew.style.width = ((overlappingArrBak.indexOf(bigArr[0]) / overlappingArrBak.length) * 100) + "%";
-            divNew.style.zIndex = 0;
+            if (overlappingArrBak.indexOf(bigArr[0]) == 0) {
+                const prevBigDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${overlappingArrBak.length - overlappingArrBak.indexOf(bigArr.at(-1))})`);
+                console.log(prevBigDiv.textContent);
+                divNew.style.marginLeft = (parseInt(prevBigDiv.style.width) + parseInt(prevBigDiv.style.marginLeft)) + "%";
+                divNew.style.width = (((overlappingArrBak.indexOf(bigArr.at(-1))+1) / overlappingArrBak.length) * 100) + "%";
+                divNew.style.zIndex = 1;
+            }
+            else {
+                divNew.style.width = ((overlappingArrBak.indexOf(bigArr.at(-1)) / overlappingArrBak.length) * 100) + "%";
+                divNew.style.zIndex = 0;
+            }
         } else {
             divNew.style.width = 100/overlappingArr.length + "%";
             divNew.style.zIndex = 1;
