@@ -73,10 +73,8 @@ for (let i=0; i<data.length; i++) {
             }
             divNew.style.marginLeft = (parseInt(prevBigDiv.style.width) + parseInt(prevBigDiv.style.marginLeft)) + "%";
             divNew.style.width = (((overlappingArrBak.indexOf(bigArr.at(-1))+1) / overlappingArrBak.length) * width) + "%";
-            divNew.style.zIndex = 1;
         } else {
             divNew.style.width = 100/overlappingArr.length + "%";
-            divNew.style.zIndex = 1;
         }
         document.getElementById("timeline-overlay").appendChild(divNew);
     }
