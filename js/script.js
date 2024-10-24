@@ -52,7 +52,7 @@ for (let i=0; i<data.length; i++) {
 
     for (let j=0; j<overlappingArr.length; j++) {
         const divNew = document.createElement("div");
-        divNew.style.left = (100/overlappingArr.length * j) + "%";
+        divNew.style.marginLeft = (100/overlappingArr.length * j) + "%";
         divNew.style.top = data[overlappingArr[j]].start + "px";
         divNew.style.height = data[overlappingArr[j]].duration + "px";
         divNew.textContent = data[overlappingArr[j]].title;

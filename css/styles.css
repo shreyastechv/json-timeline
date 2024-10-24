@@ -14,7 +14,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px 15px;
+    padding: 8px 30px;
 }
 
 h1 {
@@ -26,6 +26,10 @@ h2 {
     font-size: 12px;
     color: grey;
     font-weight: 500;
+}
+
+.timeline {
+    padding: 0 20px;
 }
 
 hr {
@@ -48,7 +52,7 @@ hr {
 #timeline-overlay {
     position: absolute;
     top: 0;
-    left: 30px;
+    margin-left: 30px;
     margin-top: 56px;
     width: 100%;
 }
