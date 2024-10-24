@@ -66,14 +66,13 @@ for (let i=0; i<data.length; i++) {
                 width = width / 2;
             }
             if (overlappingArrBak.indexOf(bigArr[0]) == 0) {
-                let prevBigDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${overlappingArrBak.length + j})`);
+                let prevBigDiv;
                 for (let k=overlappingArrBak.length + j; k>0; k--) {
                     const prevDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${k})`);
-                    if (parseInt(prevDiv.style.top) + parseInt(prevDiv.style.height) > parseInt(prevBigDiv.style.top) + parseInt(prevBigDiv.style.height)) {
+                    if (prevBigDiv === undefined || parseInt(prevDiv.style.top) + parseInt(prevDiv.style.height) > parseInt(prevBigDiv.style.top) + parseInt(prevBigDiv.style.height)) {
                         prevBigDiv = prevDiv;
                     }
                 }
-                console.log(prevBigDiv.textContent);
                 divNew.style.marginLeft = (parseInt(prevBigDiv.style.width) + parseInt(prevBigDiv.style.marginLeft)) + "%";
                 divNew.style.width = (((overlappingArrBak.indexOf(bigArr.at(-1))+1) / overlappingArrBak.length) * width) + "%";
                 divNew.style.zIndex = 1;
