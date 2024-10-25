@@ -40,34 +40,44 @@ var data = [{
 data.sort((a, b) => a.start - b.start);
 
 let overlappingArrBak = [];
+
 for (let i=0; i<data.length; i++) {
+
     const overlappingArr = [];
-    let j = i;
+    let width = 100;
+    const currFirstObj = data[i];
 
     do {
-        overlappingArr.push(i);
+        overlappingArr.unshift(i);
         i++;
-    } while (i < data.length && (data[j].start + data[j].duration) > data[i].start);
+    } while (i < data.length && ((currFirstObj.start + currFirstObj.duration) > data[i].start));
     i--;
+
+    if (overlappingArr.length > 1 && Math.max(...overlappingArrBak) + 1 == Math.min(...overlappingArr)) {
+        width = width / 2;
+    }
 
     for (let j=0; j<overlappingArr.length; j++) {
         const divNew = document.createElement("div");
-        divNew.style.left = (100/overlappingArr.length * j) + "%";
-        divNew.style.top = data[overlappingArr[j]].start + "px";
-        divNew.style.height = data[overlappingArr[j]].duration + "px";
-        divNew.textContent = data[overlappingArr[j]].title;
-        const bigArr = overlappingArrBak.filter((value) => data[value].start + data[value].duration > data[overlappingArr[j]].start);
+        const currObj = data[overlappingArr[j]];
+        divNew.style.top = currObj.start + "px";
+        divNew.style.height = currObj.duration + "px";
+        divNew.textContent = currObj.title;
+        const bigArr = overlappingArrBak.filter((value) => data[value].start + data[value].duration > currObj.start);
         if (bigArr.length !== 0) {
-            divNew.style.width = ((overlappingArrBak.indexOf(bigArr[0]) / overlappingArrBak.length) * 100) + "%";
-            divNew.style.zIndex = 0;
-        } else {
-            divNew.style.width = 100/overlappingArr.length + "%";
-            divNew.style.zIndex = 1;
-        }
-        for (let k=0; k<data.indexOf(data[overlappingArr[i]]); k++) {
-            if (data[k].start + data[k].duration > data[overlappingArr[i]].start) {
-                divNew.style.zIndex = 0;
+
+            let prevBigDiv;
+            for (let k=overlappingArrBak.length + j; k>0; k--) {
+                const prevDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${k})`);
+                if (prevBigDiv === undefined || parseInt(prevDiv.style.top) + parseInt(prevDiv.style.height) > parseInt(prevBigDiv.style.top) + parseInt(prevBigDiv.style.height)) {
+                    prevBigDiv = prevDiv;
+                }
             }
+            divNew.style.marginLeft = (parseInt(prevBigDiv.style.width) + parseInt(prevBigDiv.style.marginLeft)) + "%";
+            divNew.style.width = (((overlappingArrBak.indexOf(bigArr.at(-1))+1) / overlappingArrBak.length) * width) + "%";
+        } else {
+            divNew.style.marginLeft = (100/overlappingArr.length * j) + "%";
+            divNew.style.width = 100/overlappingArr.length + "%";
         }
         document.getElementById("timeline-overlay").appendChild(divNew);
     }
