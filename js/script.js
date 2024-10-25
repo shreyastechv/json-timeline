@@ -38,7 +38,6 @@ var data = [{
 ];
 
 data.sort((a, b) => a.start - b.start);
-
 let overlappingArrBak = [];
 
 for (let i=0; i<data.length; i++) {
@@ -65,7 +64,6 @@ for (let i=0; i<data.length; i++) {
         divNew.textContent = currObj.title;
         const bigArr = overlappingArrBak.filter((value) => data[value].start + data[value].duration > currObj.start);
         if (bigArr.length !== 0) {
-
             let prevBigDiv;
             for (let k=overlappingArrBak.length + j; k>0; k--) {
                 const prevDiv = document.querySelector(`#timeline-overlay > div:nth-last-child(${k})`);
